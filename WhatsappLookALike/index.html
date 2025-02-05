@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whatsapp Desgin Clone</title>
+
+    <link rel="stylesheet" href="./assets/styles/main.css">
+</head>
+<body>
+    <div class="viewport">
+
+        <div class="header">
+
+            <div class="left-pane">
+                <div class="profile">
+                    <img  src="./assets/images/blank-profile.webp" alt="">
+                </div>
+
+                <div class="menus">
+                    <div class="icon">
+                        <img src="./assets/icons/chat.svg" alt="chat icon">
+                        <img src="./assets/icons/more_vert.svg" alt="user menu icon">
+                    </div>
+                    <div class="icon"></div>
+                </div>
+            </div>
+
+            <div class="right-pane">
+                
+                <div class="reciver-card">
+                    <div  class="profile">
+                        <img id="dp" src="./assets/images/bruno.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <h4 id="name">Bruno</h2>
+                        <h6 id="status">typing...</h6>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <div class="icon">
+                        <img src="./assets/icons/attach.svg" alt="attach document icon">
+                        <img src="./assets/icons/more_vert.svg" alt="chat menu icon">
+                    </div>
+                    <div class="icon"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-cont">
+            <div class="side-nav">
+                <div class="search-bar">
+                    <img src="./assets/icons/search.svg" alt="search bar icon">
+                    <input type="text" placeholder="Search or start new chat"/>
+                </div>
+
+                <div id="chat-list">
+                    <div class="card" onclick="openChat(0)">
+                        <div class="right">
+                            <div class="profile">
+                                <img src="./assets/images/bruno.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h4>Bruno</h2>
+                                    <h6>tyling..</h6>
+                                </div>
+                        </div>
+
+                        <div class="time">
+                            <p>02:00</p>
+                        </div>
+                    </div>
+
+                    <div class="card" onclick="openChat(1)">
+                        <div class="right">
+                            <div class="profile">
+                                <img src="./assets/images/zayn.jpeg" alt="">
+                            </div>
+                            <div class="info">
+                                <h4>Zyan</h2>
+                                    <h6>Online</h6>
+                                </div>
+                        </div>
+
+                        <div class="time">
+                            <p>02:00</p>
+                        </div>
+                    </div>
+
+                    <div class="card" onclick="openChat(2)">
+                        <div class="right">
+                            <div class="profile">
+                                <img src="./assets/images/tylerDurden.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h4>Tyler</h2>
+                                    <h6>typing..</h6>
+                                </div>
+                        </div>
+
+                        <div class="time">
+                            <p>02:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            <div class="chat">
+                <div class="msg-screen" >
+                        <p id="date" class="date">date</p>
+                        <div id="msg-screen">
+
+                        </div>
+                </div>
+
+                <div class="msg-bar">
+                    <img src="./assets/icons/emoji.svg" alt="emoji">
+                    <input type="text" id="typed-text" />
+                    <img src="./assets/icons/mic.svg" alt="">
+                    <img src="./assets/icons/send_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" onclick="sendChat()" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="./index.js"></script>
+</html>
