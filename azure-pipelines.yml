@@ -10,6 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
 - task: NodeTool@0
   inputs:
     versionSpec: '20.x'
@@ -20,17 +21,28 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-  
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'vite-project/dist'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
+    replaceExistingArchive: true
+  displayName: 'Archive build folder into a zip file'
+
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
     appType: 'webApp'
     WebAppName: 'SampleReact'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/build.zip'
+  displayName: 'Deploy to Azure Web App'
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+  displayName: 'Publish build artifacts'
