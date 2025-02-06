@@ -31,14 +31,13 @@ steps:
     replaceExistingArchive: true
   displayName: 'Archive build folder into a zip file'
 
-- task: AzureRmWebAppDeployment@4
+- task: AzureWebApp@1
   inputs:
-    ConnectionType: 'AzureRM'
     azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
     appType: 'webApp'
-    WebAppName: 'SampleReact'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/build.zip'
-  displayName: 'Deploy to Azure Web App'
+    appName: 'SampleReact'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
 
 - task: PublishBuildArtifacts@1
   inputs:
