@@ -23,3 +23,9 @@ steps:
     skip_app_build: true
     skip_api_build: true
     azure_static_web_apps_api_token: $(deployment_token)
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
+    appType: 'webAppLinux'
+    appName: 'ceireacter'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
