@@ -17,15 +17,16 @@ steps:
   inputs:
     versionSource: 'spec'
     versionSpec: '6.x'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '/vite-project'
+
 - script: |
-    cd ./vite-project/
-    pwd
-    npm install
-  displayName: 'npm install'
-- script: |
+    cd ./vite-project/dist/
     npm run build
     ls 
-    cd ./dist/
   displayName: 'build'
 
 
