@@ -13,6 +13,11 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- script: |
+    pwd
+    ls
+
+
 - task: Npm@1
   inputs:
     command: 'install'
