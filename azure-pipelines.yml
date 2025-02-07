@@ -6,6 +6,9 @@
 trigger:
 - master
 
+variables:
+  - group: deployment_token
+
 pool:
   vmImage: ubuntu-latest
 
