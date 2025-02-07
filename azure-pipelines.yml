@@ -13,9 +13,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: |
-    pwd
-    ls
 
 
 - task: Npm@1
@@ -29,6 +26,9 @@ steps:
     workingDir: './vite-project'
     customCommand: 'run build'
 
+- script: |
+    pwd
+    ls
 
 - task: PublishBuildArtifacts@1
   inputs:
