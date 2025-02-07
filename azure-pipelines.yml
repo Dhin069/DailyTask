@@ -13,24 +13,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSource: 'spec'
-    versionSpec: '6.x'
-
 - task: Npm@1
   inputs:
     command: 'install'
     workingDir: '/vite-project'
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: '/vite-project'
-    customCommand: 'run build'
 
-- task: AzureStaticWebApp@0
-  inputs:
-    app_location: '/vite-project/dist/'
-    skip_app_build: true
-    skip_api_build: true
-    azure_static_web_apps_api_token: $(deployment_token)
