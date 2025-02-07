@@ -28,7 +28,9 @@ steps:
 
 - script: |
     pwd
-    ls
+    ls 
+    echo "----"
+    ls /home/vsts/work/1/a
 
 - task: PublishBuildArtifacts@1
   inputs:
