@@ -13,9 +13,28 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '6.x'
 - script: |
     echo "hello world"
+    cd ./vite-project/
+    npm install
+    npm run build
+    cd ./dist/
+    ls -la
   displayName: 'echo "hello world"'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
+    appType: 'webAppLinux'
+    appName: 'ceireacter'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+
+
 
 - task: AzureStaticWebApp@0
   inputs:
@@ -23,9 +42,3 @@ steps:
     skip_app_build: true
     skip_api_build: true
     azure_static_web_apps_api_token: $(deployment_token)
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
-    appType: 'webAppLinux'
-    appName: 'ceireacter'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
