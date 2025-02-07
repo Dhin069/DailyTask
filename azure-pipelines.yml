@@ -27,10 +27,8 @@ steps:
     customCommand: 'run build'
 
 - script: |
-    pwd
-    ls 
-    echo "----"
-    ls /home/vsts/work/1/a
+    cd ./vite-project/
+    npm run build
 
 - task: PublishBuildArtifacts@1
   inputs:
