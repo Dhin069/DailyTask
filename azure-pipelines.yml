@@ -21,7 +21,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: './vite-project/'
+    workingDir: '/vite-project'
 - task: Npm@1
   inputs:
     command: 'custom'
