@@ -23,3 +23,22 @@ steps:
     command: 'install'
     workingDir: './vite-project'
 
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: './vite-project'
+    customCommand: 'run build'
+
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
+    appType: 'webAppLinux'
+    appName: 'ceireacter'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
