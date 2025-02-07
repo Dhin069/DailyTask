@@ -10,38 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
-
 - script: |
-    cd vite-project
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    echo "hello world"
+  displayName: 'echo "hello world"'
 
-- task: ArchiveFiles@2
+- task: AzureStaticWebApp@0
   inputs:
-    rootFolderOrFile: 'vite-project/dist'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
-    replaceExistingArchive: true
-  displayName: 'Archive build folder into a zip file'
-
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
-    appType: 'webApp'
-    appName: 'SampleReact'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-  displayName: 'Publish build artifacts'
+    app_location: '/WhatsappLookALike'
+    skip_app_build: true
+    skip_api_build: true
+    azure_static_web_apps_api_token: $(deployment_token)
