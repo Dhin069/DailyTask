@@ -21,14 +21,12 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
+    workingDir: '/vite-project/'
+- task: Npm@1
+  inputs:
+    command: 'custom'
     workingDir: '/vite-project'
-
-- script: |
-    cd ./vite-project/dist/
-    npm run build
-    ls 
-  displayName: 'build'
-
+    customCommand: 'run build'
 
 - task: AzureStaticWebApp@0
   inputs:
