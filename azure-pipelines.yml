@@ -20,16 +20,21 @@ steps:
     command: 'install'
     workingDir: './vite-project'
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: './vite-project'
-    customCommand: 'run build'
-
 - script: |
     cd ./vite-project/
     npm run build
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: './vite-project/dist'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -41,4 +46,5 @@ steps:
     azureSubscription: 'Free Trial(a68bc9fc-7cb6-487f-91f8-c407813a1165)'
     appType: 'webAppLinux'
     appName: 'ceireacter'
-    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/build.zip'
+
