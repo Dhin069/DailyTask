@@ -18,19 +18,19 @@ steps:
     versionSource: 'spec'
     versionSpec: '6.x'
 - script: |
-    echo "hello world"
     cd ./vite-project/
     npm install
-    npm install vite
+  displayName: 'npm install'
+- script: |
     npm run build
+    ls 
     cd ./dist/
-    ls -la
-  displayName: 'echo "hello world"'
+  displayName: 'build'
 
 
 - task: AzureStaticWebApp@0
   inputs:
-    app_location: './vite-project/dist/'
+    app_location: '/vite-project/dist/'
     skip_app_build: true
     skip_api_build: true
     azure_static_web_apps_api_token: $(deployment_token)
