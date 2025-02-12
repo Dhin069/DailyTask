@@ -1,7 +1,7 @@
 import express from "express"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
-import { Product } from "./model/ProductModel.js"
+import apiEntryPoint from "./routes/apiEntryPoint.js"
 
 dotenv.config()
 
@@ -12,6 +12,9 @@ const logger = (req, res, next) => {
 
 const app = express()
 app.use(logger)
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use("/api", apiEntryPoint)
 
 mongoose.connect(process.env.DB_URL)
     .then(()=>{
@@ -23,14 +26,3 @@ mongoose.connect(process.env.DB_URL)
     .catch((err)=>{
         console.error(err);
     })
-
-app.get("/products", async (req, res) => {
-    try {
-        const products = await Product.find({},{_id:0});
-        res.status(200).json(products); 
-    } catch (error) {
-        console.error("Error fetching products:", error);
-        res.status(500).json({ error: error.message }); 
-    }
-    });
-
