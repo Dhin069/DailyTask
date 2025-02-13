@@ -32,8 +32,7 @@ const getUsers = async (req, res) => {
 const getUserById = async(req, res) =>{
     try {
         const {id} = req.params
-        const users = readJsonFile(DATA_FILE)
-        console.log(id);
+        const users = await readJsonFile(DATA_FILE)
         
         const user = users.filter((user)=>user.id==id)
         if(user)
@@ -49,9 +48,9 @@ const getUserById = async(req, res) =>{
 const postUser = async (req, res) => {
     try {
         const {id, name, email} = req.body
-        const users = readJsonFile(DATA_FILE)
+        const users = await readJsonFile(DATA_FILE)
         users.push({id, name, email})
-        writeJsonFile(DATA_FILE, users)
+        await writeJsonFile(DATA_FILE, users)
         return res.status(200).json(users)
     } catch (error) {
         console.log(error);
@@ -63,18 +62,37 @@ const patchUser = async (req, res) => {
     try {
         const {id, ...updateFeilds} = req.body
         
-        const users = readJsonFile(DATA_FILE)
+        const users = await readJsonFile(DATA_FILE)
         
         const index = users.findIndex((user) => user.id == id);
         if (index == -1)
-            return res.status(404).json("Nos user found")
+            return res.status(404).json("No user found")
 
         users[index]={...users[index], ...updateFeilds}
-        writeJsonFile(DATA_FILE, users)
+        await writeJsonFile(DATA_FILE, users)
         return res.status(200).json(users[index])
     } catch (error) {
         console.log(error);
         return res.status(500).json({"msg":"Error occured"})
     }
 }
-export {getUsers, postUser, getUserById, patchUser}
+
+const deleteUser = async (req, res) => {
+    try {
+        const {id} = req.body
+        console.log(id);
+        
+        const users = await readJsonFile(DATA_FILE)
+        const index = users.findIndex((user) => user.id == id);
+        if (index == -1)
+            return res.status(404).json("No user found")
+
+        users.splice(index,1)
+        await writeJsonFile(DATA_FILE, users)
+        res.status(200).json({ "msg":"Deleted Successfully", users })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({"msg":"Error occured"})
+    }
+}
+export {getUsers, postUser, getUserById, patchUser, deleteUser}
