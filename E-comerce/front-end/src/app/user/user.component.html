@@ -1,28 +1,28 @@
  <div class="user-cont">
     
-    <form action="" class="user-form">
+    <form action="" class="user-form" #userForm="ngForm">
         <div>
             <label for="">Enter ID</label><br>
-            <input type="text" name="id">
+            <input type="text" name="id" [(ngModel)]="id">
             <div class="btn-cont">
-                <input type="button" value="Get by ID" class="button orange">
-                <input type="button" value="Delete by ID" class="button red">
+                <input type="button" value="Get by ID" class="button orange" (click)="onGetByID()" >
+                <input type="button" value="Delete by ID" class="button red" (click)="onDelByID()" >
             </div>
         </div>
         <div>
             
         <label for="">Enter Name</label><br>
-        <input type="text" name="name">
+        <input type="text" name="name" [(ngModel)]="name">
         </div>
 
         <div>
             
         <label for="">Enter Email</label><br>
-        <input type="text" name="email">
+        <input type="text" name="email" [(ngModel)]="email">
         <div class="btn-cont">
-            <input type="button" value="Get All" class="button orange">
-            <input type="button" value="Insert" class="button green">
-            <input type="button" value="Update" class="button orange">
+            <input type="button" value="Get All" class="button orange" (click)="onGetAll()" >
+            <input type="button" value="Insert" class="button green" (click)="onInsert()" >
+            <input type="button" value="Update" class="button orange" (click)="onUpdate()" >
         </div>
         </div>
 

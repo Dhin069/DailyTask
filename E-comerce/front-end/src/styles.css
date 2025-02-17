@@ -33,3 +33,13 @@ html, body {
 width: 100%;
 min-height: 100vh; /* Ensures it covers full viewport height */
 }
+
+
+input:active{
+  all: unset;
+}
+
+input{
+  all: unset;
+  border: 1px solid black;
+}
