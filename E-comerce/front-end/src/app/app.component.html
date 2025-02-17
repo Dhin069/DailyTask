@@ -1,15 +1,9 @@
 <div class="root" id="root">
-<nav class="header">
-  <span class="logo">
-  <a routerLink="/"><img src="../assets/logo/e-com logo.png"/></a>
-  </span>
-
-  <span class="menu-items">
-    <a routerLink="/">home</a>
-    <a routerLink="/user">User</a>
-    <a routerLink="/product">Product</a>
-  </span>
-</nav>
-<h1>hi</h1>
-<router-outlet></router-outlet>
+  <app-nav-bar></app-nav-bar>
+  <div class="main-cont">
+    <router-outlet></router-outlet>
+  </div>
+  <footer class="footer">
+    <p>&copy; 2025 Your Company. All rights reserved.</p>
+  </footer>
 </div>

@@ -1,0 +1,48 @@
+.user-cont{
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    display: flex;
+}
+
+.btn-cont{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-form{
+    padding: 2rem 2px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-detail{
+    width: 70%;
+}
+
+
+.button{
+    all:unset;
+    font-size: 0.7rem;
+    height: 1.5rem;
+    background-color: var(--primary-green);
+    padding: 2px 5px;
+    transition: 0.4s all;
+    cursor: pointer;
+  }
+  
+.button:hover{
+    font-size: 0.9rem;
+}
+
+  .orange{
+    background-color: var(--primary-orange);
+  }
+  
+  .red{
+    background-color: rgb(253, 34, 34);
+  }

@@ -1,5 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    /* Primary Colors */
+    --primary-orange: #E3642A;
+    --primary-green: #009E3E;
+  
+    /* Secondary Colors */
+    --secondary-deep-orange: #E7662B;
+    --secondary-black: #000000;
+  
+    /* Tertiary Colors */
+    --tertiary-dark-blue: #264653;
+    --tertiary-soft-yellow: #F4A261;
+    --tertiary-deep-red: #9B2226;
+    --tertiary-muted-teal: #2A9D8F;
+    --tertiary-light-gray: #EDEDED;
+  }
+
 *{
     margin: 0;
     padding: 0;
+}
+
+html, body {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  h1, h2, h3 {  
+    font-family: 'Playfair Display', serif;
+  }
+  .root {
+width: 100%;
+min-height: 100vh; /* Ensures it covers full viewport height */
 }
