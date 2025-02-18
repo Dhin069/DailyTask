@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import apiEntryPoint from "./routes/apiEntryPoint.js"
+import cors from "cors"
 
 dotenv.config()
 
@@ -11,10 +12,12 @@ const logger = (req, res, next) => {
   };
 
 const app = express()
-app.use(logger)
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+app.use(logger)
 app.use("/api", apiEntryPoint)
+
 
 mongoose.connect(process.env.DB_URL)
     .then(()=>{

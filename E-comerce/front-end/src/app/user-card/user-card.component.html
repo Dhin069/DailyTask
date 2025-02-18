@@ -1,0 +1,16 @@
+<div *ngIf="posts" class="card">
+    <div class="card-header">
+      <h3>{{ posts?.name }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="card-item">
+        <h4>ID</h4>
+        <p>{{ posts?.id }}</p>
+      </div>
+      <div class="card-item">
+        <h4>Email</h4>
+        <p>{{ posts?.email }}</p>
+      </div>
+    </div>
+  </div>
+  

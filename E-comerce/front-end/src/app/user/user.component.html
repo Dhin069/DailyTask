@@ -3,7 +3,7 @@
     <form action="" class="user-form" #userForm="ngForm">
         <div>
             <label for="">Enter ID</label><br>
-            <input type="text" name="id" [(ngModel)]="id">
+            <input type="text" name="id" [(ngModel)]="id" required>
             <div class="btn-cont">
                 <input type="button" value="Get by ID" class="button orange" (click)="onGetByID()" >
                 <input type="button" value="Delete by ID" class="button red" (click)="onDelByID()" >
@@ -12,13 +12,13 @@
         <div>
             
         <label for="">Enter Name</label><br>
-        <input type="text" name="name" [(ngModel)]="name">
+        <input type="text" name="name" [(ngModel)]="name" required>
         </div>
 
         <div>
             
         <label for="">Enter Email</label><br>
-        <input type="text" name="email" [(ngModel)]="email">
+        <input type="text" name="email" [(ngModel)]="email" required>
         <div class="btn-cont">
             <input type="button" value="Get All" class="button orange" (click)="onGetAll()" >
             <input type="button" value="Insert" class="button green" (click)="onInsert()" >
@@ -28,7 +28,20 @@
 
     </form>
 
-    <div class="user-detail">
-        sadf
-    </div>
+    <div  class="user-detail">
+        <!-- Check if posts is an array -->
+        <div *ngIf="posts && posts.length; else singlePost" class="user-detail">
+            <!-- If it's an array, loop through each post -->
+            <div *ngFor="let post of posts">
+            <app-user-card [posts]="post"></app-user-card>
+            </div>
+        </div>
+        
+        <!-- Template for a single post when it's not an array -->
+        <ng-template #singlePost >
+            <div>
+                <app-user-card [posts]="posts"></app-user-card>
+            </div>
+        </ng-template>
+        
 </div>

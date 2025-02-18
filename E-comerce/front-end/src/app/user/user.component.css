@@ -1,6 +1,6 @@
 .user-cont{
     width: 100%;
-    height: 100%;
+    height: 70vh;
     justify-content: space-around;
     display: flex;
 }
@@ -17,12 +17,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 
 .user-detail{
-    width: 70%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    overflow: scroll;
 }
+
+.user-detail::-webkit-scrollbar{
+  display: none;
+}
+
 
 
 .button{

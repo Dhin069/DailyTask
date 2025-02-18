@@ -24,7 +24,6 @@ const getUsers = async (req, res) => {
             const users = await readJsonFile(DATA_FILE)
             return res.status(200).json(users)
         } catch (error) {
-            console.log(error);
             return res.status(500).json({"msg":"Error occured"})
         }
 }
@@ -32,15 +31,17 @@ const getUsers = async (req, res) => {
 const getUserById = async(req, res) =>{
     try {
         const {id} = req.params
+        
         const users = await readJsonFile(DATA_FILE)
         
-        const user = users.filter((user)=>user.id==id)
+        const user = users.filter((user)=>user.id==id)[0]
+        
         if(user)
             return res.status(200).json(user)
         
+        
         return res.status(404).json({"msg":"No User Found"})
     } catch (error) {
-        console.log(error);
         return res.status(500).json({"msg":"Error occured"})
     }
 }
@@ -49,11 +50,14 @@ const postUser = async (req, res) => {
     try {
         const {id, name, email} = req.body
         const users = await readJsonFile(DATA_FILE)
+        const index = users.findIndex((user) => user.id == id);
+        if(index!=-1){
+            return res.status(400).json({"msg":"Id already exist"})
+        }
         users.push({id, name, email})
         await writeJsonFile(DATA_FILE, users)
-        return res.status(200).json(users)
+        return res.status(200).json(users[users.length - 1])
     } catch (error) {
-        console.log(error);
         return res.status(500).JSON({"msg":"Error occured"})
     }
 }
@@ -66,13 +70,12 @@ const patchUser = async (req, res) => {
         
         const index = users.findIndex((user) => user.id == id);
         if (index == -1)
-            return res.status(404).json("No user found")
+            return res.status(404).json({"msg":"No user found"})
 
         users[index]={...users[index], ...updateFeilds}
         await writeJsonFile(DATA_FILE, users)
         return res.status(200).json(users[index])
     } catch (error) {
-        console.log(error);
         return res.status(500).json({"msg":"Error occured"})
     }
 }
@@ -80,16 +83,18 @@ const patchUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const {id} = req.body
+        console.log("came");
         console.log(id);
         
         const users = await readJsonFile(DATA_FILE)
         const index = users.findIndex((user) => user.id == id);
         if (index == -1)
-            return res.status(404).json("No user found")
+            return res.status(404).json({"msg":"No user found"})
 
+        const user = users[index]
         users.splice(index,1)
         await writeJsonFile(DATA_FILE, users)
-        res.status(200).json({ "msg":"Deleted Successfully", users })
+        res.status(200).json(user)
     } catch (error) {
         console.log(error);
         return res.status(500).json({"msg":"Error occured"})
