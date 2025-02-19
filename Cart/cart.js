@@ -9,14 +9,14 @@ class Item {
         this.quantity += amount;
     }
 
-    decreaseQuantity(amount = 1) {
-        if (this.quantity > amount) {
-            this.quantity -= amount;
-        } else {
-            return false;
-        }
-        return true;
-    }
+    // decreaseQuantity(amount = 1) {
+    //     if (this.quantity > amount) {
+    //         this.quantity -= amount;
+    //     } else {
+    //         return false;
+    //     }
+    //     return true;
+    // }
 }
 
 class Cart {
@@ -45,22 +45,22 @@ class Cart {
         return false;
     }
 
-    addQuantity(name, amount = 1) {
-        let item = this.items.find(i => i.name === name);
-        if (item) {
-            item.increaseQuantity(amount);
-            return true;
-        }
-        return false;
-    }
+    // addQuantity(name, amount = 1) {
+    //     let item = this.items.find(i => i.name === name);
+    //     if (item) {
+    //         item.increaseQuantity(amount);
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    removeQuantity(name, amount = 1) {
-        let item = this.items.find(i => i.name === name);
-        if (item) {
-            return item.decreaseQuantity(amount);
-        }
-        return false; 
-    }
+    // removeQuantity(name, amount = 1) {
+    //     let item = this.items.find(i => i.name === name);
+    //     if (item) {
+    //         return item.decreaseQuantity(amount);
+    //     }
+    //     return false; 
+    // }
 
     applyDiscount(percent) {
         if (percent >= 0 && percent <= 100) {
@@ -75,20 +75,14 @@ class Cart {
         let discountAmount = (this.total * this.discountRate) / 100;
         return this.total - discountAmount;
     }
-
-    print() {
-        console.log("Cart Summary:");
-        this.items.forEach(item => {
-            console.log(`${item.name} - Quantity: ${item.quantity}, Price: $${item.price}`);
-        });
-        console.log(`Total (after discount): $${this.bill()}`);
-    }
 }
 
+// const cart = new Cart();
+// cart.addItem(new Item("Laptop", 1000))
+// cart.addItem(new Item("Phone", 500))
+// cart.addQuantity("Phone", 2)
+// cart.applyDiscount(10)
+// cart.print();
 
-const cart = new Cart();
-cart.addItem(new Item("Laptop", 1000))
-cart.addItem(new Item("Phone", 500))
-cart.addQuantity("Phone", 2)
-cart.applyDiscount(10)
-cart.print();
+
+module.exports = {Cart, Item}
