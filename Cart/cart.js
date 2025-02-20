@@ -9,14 +9,14 @@ class Item {
         this.quantity += amount;
     }
 
-    // decreaseQuantity(amount = 1) {
-    //     if (this.quantity > amount) {
-    //         this.quantity -= amount;
-    //     } else {
-    //         return false;
-    //     }
-    //     return true;
-    // }
+    decreaseQuantity(amount = 1) {
+        if (this.quantity > amount) {
+            this.quantity -= amount;
+        } else {
+            return false;
+        }
+        return true;
+    }
 }
 
 class Cart {
@@ -45,22 +45,22 @@ class Cart {
         return false;
     }
 
-    // addQuantity(name, amount = 1) {
-    //     let item = this.items.find(i => i.name === name);
-    //     if (item) {
-    //         item.increaseQuantity(amount);
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    addQuantity(name, amount = 1) {
+        let item = this.items.find(i => i.name === name);
+        if (item) {
+            item.increaseQuantity(amount);
+            return true;
+        }
+        return false;
+    }
 
-    // removeQuantity(name, amount = 1) {
-    //     let item = this.items.find(i => i.name === name);
-    //     if (item) {
-    //         return item.decreaseQuantity(amount);
-    //     }
-    //     return false; 
-    // }
+    removeQuantity(name, amount = 1) {
+        let item = this.items.find(i => i.name === name);
+        if (item) {
+            return item.decreaseQuantity(amount);
+        }
+        return false; 
+    }
 
     applyDiscount(percent) {
         if (percent >= 0 && percent <= 100) {

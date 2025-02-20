@@ -125,3 +125,48 @@ describe("Billing the cart", () => {
         expect(cart.bill()).toEqual(27900)
     })
 })
+
+
+describe("Adding quantity from item on cart", ()=>{
+    test("Should not add quantity", ()=>{
+        expect(cart.addQuantity("Phone")).toBe(false)
+    })
+
+    test("Should add quantity by 1", ()=>{
+        cart.addItem(new Item("Phone", 1000))
+        cart.addQuantity("Phone")
+        expect(cart.items[0].quantity).toBe(2)
+    })
+
+    test("Should add quantity by 3", ()=>{
+        cart.addItem(new Item("Phone", 1000))
+        cart.addQuantity("Phone", 3)
+        expect(cart.items[0].name).toBe("Phone")
+        expect(cart.items[0].quantity).toBe(4)
+    })
+})
+
+describe("Remove quantity from item on cart", ()=>{
+    test("Should not remove qunatity", ()=>{
+        expect(cart.removeQuantity("Phone")).toBe(false)
+    })
+
+    test("Should not Remove quantity from item when quantity is 1", ()=>{
+        cart.addItem(new Item("Phone", 1000))
+        expect(cart.removeQuantity("Phone")).toBe(false)
+    })
+
+    test("Should remove qunatity by 1", ()=>{
+        cart.addItem(new Item("Phone", 1000))
+        cart.addQuantity("Phone", 1)
+        cart.removeQuantity("Phone")
+        expect(cart.items[0].quantity).toEqual(1)
+    })
+
+    test("Should remove quantity by 2", ()=>{
+        cart.addItem(new Item("Phone", 1000))
+        cart.addQuantity("Phone", 2)
+        cart.removeQuantity("Phone", 2)
+        expect(cart.items[0].quantity).toEqual(1)
+    })
+})
